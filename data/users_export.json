@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "6933020a055c269d3d2ea6b7",
+    "nom": "",
+    "email": "",
+    "listeavis": []
+  },
+  {
+    "_id": "693313d52e7e29c852ee8284",
+    "nom": "Chef Ratatouille",
+    "email": "chef@ratatouille.com",
+    "listeavis": [],
+    "createdAt": "2025-12-05T17:18:13.944Z",
+    "updatedAt": "2025-12-05T17:18:13.944Z",
+    "__v": 0
+  }
+]

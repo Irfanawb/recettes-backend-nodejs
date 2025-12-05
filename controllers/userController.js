@@ -1,3 +1,4 @@
+import fs from 'fs';
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 
@@ -113,5 +114,30 @@ export const getUserReviews = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+// @desc    Exporter les utilisateurs dans un fichier JSON
+// @route   GET /api/users/export
+export const exportUsersToJson = async (req, res) => {
+    try {
+        // 1. On récupère tous les utilisateurs
+        const users = await User.find({});
+
+        // 2. On définit le chemin du fichier (dans le dossier 'data')
+        const filePath = './data/users_export.json';
+
+        // 3. On transforme les données en texte JSON
+        const jsonData = JSON.stringify(users, null, 2);
+
+        // 4. On écrit le fichier (writeFileSync = écriture synchrone simple)
+        fs.writeFileSync(filePath, jsonData);
+
+        res.status(200).json({ 
+            message: 'Export réussi !', 
+            path: filePath 
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: "Erreur lors de l'export", error: error.message });
     }
 };
