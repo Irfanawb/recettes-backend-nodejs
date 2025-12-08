@@ -13,9 +13,8 @@ app.use(express.json());
 // Connexion MongoDB
 connectDB();
 
-// ⬇️ AJOUTE CETTE LIGNE
 app.use('/api/chefs', chefRoutes);
 
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur démarré sur le port ${PORT}`);
+  console.log("Serveur démarré sur le port");
 });
