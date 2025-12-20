@@ -1,10 +1,11 @@
+//permet d'associer chaque url a  la bonne fonction de controle
 import express from 'express';
-// 1. AJOUTE 'searchUser' dans l'import 👇
+//AJOUT de 'searchUser
 import { createUser, getAllUsers, searchUser ,getUserReviews ,exportUsersToJson} from '../controllers/userController.js';
 
 const router = express.Router();
 
-// 2. AJOUTE la route de recherche ICI (avant les autres GET si possible) 👇
+//AJOUT de la route de recherche
 router.get('/search', searchUser);
 router.get('/export', exportUsersToJson);
 

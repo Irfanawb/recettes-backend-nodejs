@@ -4,8 +4,7 @@ import Chef from "../models/ChefModel.js";
 
 const router = express.Router();
 
-//CRÉER UN CHEF (POST)
-
+// CRÉER UN CHEF (POST)
 router.post("/", async (req, res) => {
     try {
         const chef = await Chef.create(req.body);
@@ -15,92 +14,83 @@ router.post("/", async (req, res) => {
     }
 });
 
-//AFFICHER TOUS LES CHEFS (GET)
-
+// AFFICHER TOUS LES CHEFS (GET) + populate
 router.get("/", async (req, res) => {
     try {
-        const chefs = await Chef.find();
+        const chefs = await Chef.find().populate("listerecettes");
         res.status(200).json(chefs);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
- //EXPORTER LES CHEFS EN FICHIER JSON
-
+// EXPORTER LES CHEFS EN FICHIER JSON
 router.get("/export/json", async (req, res) => {
     try {
-        const chefs = await Chef.find();
+        const chefs = await Chef.find().populate("listerecettes");
 
-        // Convertir en JSON formaté
         const json = JSON.stringify(chefs, null, 2);
 
-        // Sauvegarder dans un fichier local
         fs.writeFileSync("chefs_export.json", json);
 
-        // Télécharger le fichier
         res.download("chefs_export.json");
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-//AFFICHER UN CHEF PAR ID (GET)
+// AFFICHER UN CHEF PAR ID (GET) + populate
+router.get("/:id", async (req, res) => {
+    try {
+        const chef = await Chef.findById(req.params.id).populate("listerecettes");
 
-router.get("/:id", async (req, res) =>{
-    try{
-        const chef = await Chef.findById(req.params.id);
-
-        if(!chef)return res.status(404).json({ message: "Chef non trouvé" });
+        if (!chef) return res.status(404).json({ message: "Chef non trouvé" });
 
         res.status(200).json(chef);
-    }catch(error){
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-//AFFICHER LES RECETTES D’UN CHEF
+// AFFICHER LES RECETTES D’UN CHEF + populate
+router.get("/:id/recettes", async (req, res) => {
+    try {
+        const chef = await Chef.findById(req.params.id).populate("listerecettes");
 
-router.get("/:id/recettes", async (req, res) =>{
-    try{
-        const chef = await Chef.findById(req.params.id);
-
-        if(!chef) return res.status(404).json({ message: "Chef non trouvé" });
+        if (!chef) return res.status(404).json({ message: "Chef non trouvé" });
 
         res.status(200).json(chef.listerecettes);
-    }catch(error){
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-//MODIFIER UN CHEF (PUT)
-
+// MODIFIER UN CHEF (PUT) + populate
 router.put("/:id", async (req, res) => {
-    try{
+    try {
         const chef = await Chef.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true }
-        );
+        ).populate("listerecettes");
 
-        if(!chef) return res.status(404).json({ message: "Chef non trouvé" });
+        if (!chef) return res.status(404).json({ message: "Chef non trouvé" });
 
         res.status(200).json(chef);
-    }catch (error){
+    } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
 
-//SUPPRIMER UN CHEF (DELETE)
-
-router.delete("/:id", async (req, res) =>{
-    try{
+// SUPPRIMER UN CHEF (DELETE)
+router.delete("/:id", async (req, res) => {
+    try {
         const chef = await Chef.findByIdAndDelete(req.params.id);
 
-        if(!chef) return res.status(404).json({ message: "Chef non trouvé" });
+        if (!chef) return res.status(404).json({ message: "Chef non trouvé" });
 
         res.status(200).json({ message: "Chef supprimé avec succès" });
-    }catch (error){
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });

@@ -14,7 +14,6 @@ const recetteSchema = new mongoose.Schema({
   materiel: [String],
   photoUrl: String,
   chef: { type: mongoose.Schema.Types.ObjectId, ref: "Chef" },
-  createdAt: { type: Date, default: Date.now }
 });
 
 const Recette = mongoose.model("Recette", recetteSchema);

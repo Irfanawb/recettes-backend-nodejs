@@ -1,0 +1,100 @@
+[
+  {
+    "_id": "693814ba51515a10726470de",
+    "titre": "Gâteau au chocolat fondant",
+    "description": "Un délicieux gâteau fondant au chocolat noir.",
+    "ingredients": [
+      {
+        "nom": "Chocolat noir",
+        "quantite": 200,
+        "unit": "g",
+        "prix": 2.5,
+        "_id": "693814ba51515a10726470df"
+      },
+      {
+        "nom": "Beurre",
+        "quantite": 100,
+        "unit": "g",
+        "prix": 1.2,
+        "_id": "693814ba51515a10726470e0"
+      },
+      {
+        "nom": "Sucre",
+        "quantite": 80,
+        "unit": "g",
+        "prix": 0.3,
+        "_id": "693814ba51515a10726470e1"
+      }
+    ],
+    "etape": [
+      "Faire fondre le chocolat et le beurre.",
+      "Mélanger avec le sucre.",
+      "Verser dans un moule et cuire 20 minutes."
+    ],
+    "category": "Dessert",
+    "materiel": [
+      "Four",
+      "Moule",
+      "Saladier"
+    ],
+    "photoUrl": "",
+    "chef": null,
+    "createdAt": "2025-12-09T12:23:22.443Z",
+    "__v": 0
+  },
+  {
+    "_id": "6938159751515a10726470e4",
+    "titre": "Gâteau au chocolat fondant",
+    "description": "Un délicieux gâteau fondant au chocolat noir.",
+    "ingredients": [
+      {
+        "nom": "Chocolat noir",
+        "quantite": 200,
+        "unit": "g",
+        "prix": 2.5,
+        "_id": "6938159751515a10726470e5"
+      },
+      {
+        "nom": "Beurre",
+        "quantite": 100,
+        "unit": "g",
+        "prix": 1.2,
+        "_id": "6938159751515a10726470e6"
+      },
+      {
+        "nom": "Sucre",
+        "quantite": 80,
+        "unit": "g",
+        "prix": 0.3,
+        "_id": "6938159751515a10726470e7"
+      }
+    ],
+    "etape": [
+      "Faire fondre le chocolat et le beurre.",
+      "Mélanger avec le sucre.",
+      "Verser dans un moule et cuire 20 minutes."
+    ],
+    "category": "Dessert",
+    "materiel": [
+      "Four",
+      "Moule",
+      "Saladier"
+    ],
+    "photoUrl": "",
+    "chef": {
+      "_id": "6938001d49e3c9143c923465",
+      "nom": "Martin",
+      "prenom": "Lucas",
+      "description": "Chef pâtissier étoilé",
+      "origines": "France",
+      "listerecettes": [
+        "6938159751515a10726470e4"
+      ],
+      "createdAt": "2025-12-09T10:55:25.521Z",
+      "updatedAt": "2025-12-09T12:27:03.062Z",
+      "__v": 0
+    },
+    "createdAt": "2025-12-09T12:27:03.033Z",
+    "__v": 0
+  }
+]

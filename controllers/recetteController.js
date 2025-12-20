@@ -1,26 +1,13 @@
 import Recette from "../models/recette.js";
 import mongoose from "mongoose";
-import Chef from "../models/chef.js";
+import Chef from "../models/ChefModel.js";
 import fs from "fs";
-//Creation de recette
-/*
-export const createRecipe = async (req, res, next) => {
-  try {
-    const data = req.body;
-    console.log("Données reçues pour la création de recette :", data);
-    
-    const newRecette = new Recette(data);
-    const savedRecette = await newRecette.save();
-    res.status(201).json(savedRecette);
-  } catch (err) {
-    next(err);
-  }
-};*/
-export const createRecipe = async (req, res, next) => {
-  try {
-    const { chefId, ...data } = req.body;  // on sépare chefId du reste des données
 
-    console.log("📥 Données reçues pour la création de recette :", req.body);
+export const createRecipe = async (req, res, next) => {
+  try {
+    const { chefId, ...data } = req.body;  //sépare chefId du reste des données
+
+    console.log("Données reçues pour la création de recette :", req.body);
 
     let chef = null;
 
@@ -36,7 +23,7 @@ export const createRecipe = async (req, res, next) => {
       }
     }
 
-    //On crée la recette, en liant le chef si présent
+    //création la recette en liant le chef si présent
     const newRecette = new Recette({
       ...data,                 // titre, description, ingredients, etape, etc.
       chef: chef ? chef._id : null
@@ -52,14 +39,11 @@ export const createRecipe = async (req, res, next) => {
   );
 }
 
-
-    //Réponse OK
     res.status(201).json(savedRecette);
   } catch (err) {
     next(err);
   }
 };
-
 
 export const getRecipes = async (req, res, next) => {
   try {
@@ -214,4 +198,3 @@ export const exportRecipesAsJSON = async (req, res, next) => {
     next(err);
   }
 };
-
